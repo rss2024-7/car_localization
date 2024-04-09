@@ -176,6 +176,7 @@ class SensorModel:
         probabilities = np.prod(all_probs, axis=1)
 
         return probabilities
+
     # def evaluate(self, particles, observation):
     #     """
     #     Evaluate how likely each particle is given

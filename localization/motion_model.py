@@ -44,10 +44,14 @@ class MotionModel:
             X[:2, -1] = np.array(pose[:2])
             return X
         
-        # add noise
-        odometry_random_noise = np.random.normal(0, 0.04, odometry.shape)
-        odometry += odometry_random_noise
 
+        if odometry[0] == odometry[1] == 0:
+            return particles
+        
+        # add noise
+        # odometry_random_noise = np.random.normal(0, 0.02, odometry.shape)
+        # odometry += odometry_random_noise
+        
         # 3N x 3 Matrix (every particles row converted to transform matrix)
         all_transforms = np.apply_along_axis(transform_matrix, axis=1, arr=particles)
         all_transforms = np.vstack(all_transforms)
